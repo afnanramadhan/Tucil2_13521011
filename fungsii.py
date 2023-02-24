@@ -29,20 +29,15 @@ def show2dAll(list):
         y = list[i][1]
         plt.scatter(x, y, color='blue')
     
-def showNearestDots2D(list,i,j):
-    x1 = list[i][0]
-    x2 = list[j][0]
-    y1 = list[i][1]
-    y2 = list[j][1]
-    plt.scatter(x1, y1, color='red')
-    plt.scatter(x2, y2, color='red')
+def showNearestDots2D(i,j):
+    plt.scatter(i[0], i[1], color='red')
+    plt.scatter(j[0], j[1], color='red')
     
-def drawLine2D(list,i,j):
-    x = np.array([list[i][0], list[j][0]])
-    y = np.array([list[i][1], list[j][1]])
+def drawLine2D(i,j):
+    print(i,j)
+    x = np.array([i[0], j[0]])
+    y = np.array([i[1], j[1]])
     plt.plot(x, y, color='red')
-    
-    
 
 def show3dAll(list,ax):
     for i in range(len(list)):
@@ -51,21 +46,15 @@ def show3dAll(list,ax):
         zs = list[i][2]
         ax.scatter(xs, ys, zs, color='blue')
        
-def showNearestDots3D(list,i,j,ax):
-    xs = list[i][0]
-    ys = list[i][1]
-    zs = list[i][2]
-    xx = list[j][0]
-    yy = list[j][1]
-    zz = list[j][2]
-    ax.scatter(xs, ys, zs, color='red')
-    ax.scatter(xx, yy, zz, color='red')
+def showNearestDots3D(i,j,ax):
+    ax.scatter(i[0], i[1], i[2], color='red')
+    ax.scatter(j[0], j[1], j[2], color='red')
         
         
-def drawLine3D(list,i,j,ax):
-    x = np.array([list[i][0], list[j][0]])
-    y = np.array([list[i][1], list[j][1]])
-    z = np.array([list[i][2], list[j][2]])
+def drawLine3D(i,j,ax):
+    x = np.array([i[0], j[0]])
+    y = np.array([i[1], j[1]])
+    z = np.array([i[2], j[2]])
     ax.plot3D(x, y, z, color='red')
     
 def hitungJarak(list,i,j):
@@ -84,8 +73,8 @@ def findMinBruteForce(list):
             temp = hitungJarak(list,i,j)
             if temp < min:
                 min = temp
-                titik1 = i
-                titik2 = j
+                titik1 = list[i]
+                titik2 = list[j]
     return min,titik1,titik2
 
 def splitList(list):
@@ -98,14 +87,21 @@ def splitList(list):
 def findMinDivideConquer(list):
     #pembagian terkecil sisa 2 titik
     if(len(list)==2):
-        return hitungJarak(list,0,1)
+        return hitungJarak(list,0,1),list[0],list[1]
     elif(len(list)==3):
-        return findMinBruteForce(list)[0]
+        return findMinBruteForce(list)
     else:
         l1,l2 = splitList(list)
-        d1 = findMinDivideConquer(l1)
-        d2 = findMinDivideConquer(l2)
-        d = min(d1,d2)
+        d1,t11,t12 = findMinDivideConquer(l1)
+        d2,t21,t22 = findMinDivideConquer(l2)
+        if(d1<d2):
+            d = d1
+            t1 = t11
+            t2 = t12
+        else:
+            d = d2
+            t1 = t21
+            t2 = t22
         
         tengah = len(list)//2
         if(len(list)%2==0):
@@ -132,8 +128,10 @@ def findMinDivideConquer(list):
                 if(flag):
                     d3 = hitungJarak(temp,i,j)
                     if(d3<d):
-                        d = d3                 
-        return d
+                        d = d3    
+                        t1 = temp[i]
+                        t2 = temp[j]             
+        return d,t1,t2
     
 def showVisual(dim,list,titik1,titik2,distance):
     #d dimensi
@@ -141,9 +139,9 @@ def showVisual(dim,list,titik1,titik2,distance):
     if(dim==2):
         print("2D")
         show2dAll(list)
-        showNearestDots2D(list,titik1,titik2)
-        drawLine2D(list,titik1,titik2)
-        plt.annotate(round(distance), xy=((list[titik1][0]+list[titik2][0])/2, (list[titik1][1]+list[titik2][1])/2))
+        showNearestDots2D(titik1,titik2)
+        drawLine2D(titik1,titik2)
+        plt.annotate(round(distance), xy=((titik1[0]+titik2[0])/2, (titik1[1]+titik2[1])/2))
         plt.xlabel("Sumbu X")
         plt.ylabel("Sumbu Y")
         plt.show()
@@ -152,14 +150,13 @@ def showVisual(dim,list,titik1,titik2,distance):
         print("3D")
         ax = plt.axes(projection='3d')
         show3dAll(list,ax)
-        showNearestDots3D(list,titik1,titik2,ax)
-        drawLine3D(list,titik1,titik2,ax)
+        showNearestDots3D(titik1,titik2,ax)
+        drawLine3D(titik1,titik2,ax)
         ax.set_xlabel('Sumbu X')
         ax.set_ylabel('Sumbu Y')
         ax.set_zlabel('Sumbu Z')
         plt.show()
-    else:
-        print("MAAF TIDAK DAPAT DITAMPILKAN")
+
         
 def showASCIIART(): 
     print("       ___       _     __        ___    ")
