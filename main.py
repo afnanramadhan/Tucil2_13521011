@@ -2,6 +2,8 @@ from fungsii import *
 import time
 
 def main():
+    showASCIIART()
+    print("\n---------------------------------------------------")
     print("Masukkan jumlah titik: ")
     n = int(input())
     print("Masukkan dimensi: ")

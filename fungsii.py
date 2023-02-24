@@ -160,3 +160,15 @@ def showVisual(dim,list,titik1,titik2,distance):
         plt.show()
     else:
         print("MAAF TIDAK DAPAT DITAMPILKAN")
+        
+def showASCIIART(): 
+    print("       ___       _     __        ___    ")
+    print("  ____/ (_)   __(_)___/ /__     ( _ )")
+    print(" / __  / / | / / / __  / _ \   / __ \/|")
+    print("/ /_/ / /| |/ / / /_/ /  __/  / /_/  <")
+    print("\__,_/_/ |___/_/\__,_/\___/   \____/\/")
+    print("  _________  ____  ____ ___  _____  _____")
+    print(" / ___/ __ \/ __ \/ __ `/ / / / _ \/ ___/")
+    print("/ /__/ /_/ / / / / /_/ / /_/ /  __/ /")
+    print("\___/\____/_/ /_/\__, /\__,_/\___/_/")
+    print("                   /_/")
