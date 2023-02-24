@@ -17,7 +17,7 @@ def main():
     endb = time.time()
 
     startd = time.time()
-    b = (findMinDivideConquer(lll,2))
+    b = findMinDivideConquer(lll)
     endd = time.time()
 
     
