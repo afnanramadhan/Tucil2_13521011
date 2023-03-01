@@ -2,7 +2,7 @@
 Disusun untuk memenuhi Tugas Kecil 2 IF2211 Strategi Algoritma "Mencari Pasangan Titik Terdekat 3D dengan Algoritma Divide and Conquer".
 
 ## Deskripsi Singkat
-
+Program ini adalah program untuk mencari pasangan titik terdekat. Program akan menerima n titik serta derajat d yang akan digunakan. Program ini menggunakan algoritma divide and conquer sekaligus algoritma brute force untuk menentukan pasangan titik terdekat.
 
 ## Library yang digunakan
 1. matplotlib (python)
@@ -13,16 +13,12 @@ Disusun untuk memenuhi Tugas Kecil 2 IF2211 Strategi Algoritma "Mencari Pasangan
 
 ## Cara Penggunaan
 Cara 1:
-1. Buka terminal
+1. Buka terminal pada folder ini
 2. Ketik `py src/main.py` pada terminal
 
 Cara 2:
-1. Masuk ke Folder bin
-2. Jalankan file main.exe
-
-Cara 3:
 1. Masuk ke Folder src
-2. Buka file main.cpp pada IDE yang digunakan
+2. Buka file main.py pada IDE yang digunakan
 3. Klik tombol 'Run' pada IDE yang digunakan
 
 

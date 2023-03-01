@@ -1,5 +1,6 @@
 from fungsi import *
 import time
+import platform
 
 def main():
     showASCIIART()
@@ -28,10 +29,12 @@ def main():
     print("time\t\t:", endb-startb, "second")
     print("---------------------------------------------------")
     
-    print("Euclidian count = ", countOperation())
+    print("Euclidian count\t:", countOperation())
+    
+    print("Processor\t:", platform.processor())
 
 
-    vis = input("Mau nampilin visual? (y/n) ")
+    vis = input("\nMau nampilin visual? (y/n) ")
     if(vis == 'y' or vis == 'Y'):
         if(d<=3):
             if(n>=1000):
